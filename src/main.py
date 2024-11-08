@@ -4,6 +4,7 @@ import uvicorn
 from configs.env import get_settings
 from fastapi.middleware.gzip import GZipMiddleware
 from routes.v1 import main as v1_routes
+from src.lib.redis import redis_cache
 
 config = get_settings()
 
@@ -17,12 +18,12 @@ app = FastAPI(
 
 @app.on_event("startup")
 async def startup_event():
-  # do something
+  await redis_cache.init_cache()
   print("Server started")
   
 @app.on_event("shutdown")
 async def shutdown_event():
-  # do something
+  await redis_cache.close()
   print("Server stopped")
   
 app.add_middleware(

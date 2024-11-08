@@ -31,6 +31,16 @@ class BaseConfig(BaseSettings):
   env: str = os.getenv("APP_ENV", "local")
   db_app: ClassVar[DBConfig] = AppDBConfig
   
+  # redis 
+  redis_port: int = os.getenv("REDIS_PORT", 6379)
+  redis_host: str = os.getenv("REDIS_HOST", "localhost")
+  """
+  redis server comes with 16[0 - 15] seperate blocks here we are just telling which one to use,
+  this comes in useful when we need seperation within redis so we dont have to create a new server.
+  """
+  redis_db: int = 0
+  
+  
 
 """
 lru_cache: caches the output of a function for a given input,

@@ -1,16 +1,20 @@
 from fastapi import Request
-# from db.session import get_db, Base, engine
+from src.lib.redis import redis_cache
+from src.configs.redis_constants import RedisExpInSec, RedisKey
 
-# db = get_db()
-
-class AuthController:
-  """Auth Controller"""
+class TestController:
+  """Test Controller"""
   
   @classmethod
-  async def login(self, request: Request, payload: str):
+  async def test(self, request: Request, payload: str):
     try:
-      # print(engine)
-      # Base.metadata.create_all(bind=engine)  # This creates the table
-      return {"message": "Logged in"}
+      test_data = await redis_cache.get(RedisKey.TEST_DATA)
+      
+      if test_data == None:
+        await redis_cache.set(RedisKey.TEST_DATA, payload, RedisExpInSec.TEST_DATA)
+      else:
+        return {"message": test_data, "source:": "redis"}
+      
+      return {"message": "Value set"}
     except Exception as e:
       return {"error": str(e)}
