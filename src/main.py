@@ -39,5 +39,5 @@ app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.include_router(v1_routes.api_router)
 
 if __name__ == "__main__":
-  uvicorn.run(app, host="0.0.0.0", port=4001)
+  uvicorn.run(app, host="0.0.0.0", port=4002)
   
