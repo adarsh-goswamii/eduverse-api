@@ -37,4 +37,7 @@ class RedisCache:
   async def ping(self):
     return self.redis_cache.ping()
   
+  def __add__(self, b):
+    return self.salary + b.salary
+  
 redis_cache = RedisCache()

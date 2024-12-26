@@ -1,12 +1,16 @@
 class DBTables:
   """Database table names"""
-  USER = "user"
   VIDEO = "video"
-  TOPIC = "topic"
-  COURSE_TOPIC_ASSOCIATION = "video_topic_association"
-  COURSE_SECTION = "course_section"
-  COURSE = "course"
-  SECTION = "section"
-  SECTION_VIDEO_ASSOCIATION = "section_video_association"
+  VIDEO_LIKE = "video_like"
+  USER_VIDEO_HISTORY = "user_video_history"
+  ROLE = "role"
+  ACCESS = "access"
+  USER = "user"
+  TAG = "tag"
+  PLAYLIST = "playlist"
+  VIDEO_TAG_ASSOCIATION = "video_tag_association"
+  PLAYLIST_TAG_ASSOCIATION = "playlist_tag_association"
+  ROLE_ACCESS_ASSOCIATION = "role_access_association"
 
-  
+class DBConfig:
+  SCHEMA_NAME = "eduverse"
