@@ -40,6 +40,8 @@ class BaseConfig(BaseSettings):
   """
   redis_db: int = 0
   
+  google_api_key: str = os.getenv("GOOGLE_API_KEY", "")
+  
   
 
 """
